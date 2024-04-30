@@ -8,7 +8,7 @@ export const transformLetterboxdMovieToRadarr = (movie: LetterboxdMovieDetails):
         title: movie.name,
         release_year: movie.published,
         clean_title: movie.slug,
-        director: movie.director,
+        director: movie.director.map(el => el.textContent.trim()).toArray().join(', '),
         rating: movie.rating
     }
 };
