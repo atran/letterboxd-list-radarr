@@ -55,10 +55,7 @@ export const getMovieDetail = async (slug: string) => {
         {
             name: ".headline-1",
             published: "#featured-film-header .number",
-            director: {
-                selector: "#featured-film-header p a .prettify",
-                getter: (context) => context.map(el => el.text().trim()).join(', ') // Maps over each element, trims, and joins into a string
-            },
+            director: "#featured-film-header p a .prettify",
             rating: '.display-rating',
             imdb: [
                 '[data-track-action="imdb" i]',
