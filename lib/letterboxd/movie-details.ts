@@ -12,7 +12,7 @@ export interface LetterboxdMovieDetails {
     slug: string;
     name: string;
     published: string;
-    director: string;
+    director: string[];
     rating: string;
     watches: number;
     imdb: string;
