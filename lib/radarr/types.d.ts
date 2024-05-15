@@ -1,8 +1,9 @@
 export interface RadarrMovieDetails {
-    id: number?;
-    imdb_id: string?;
+    id: number | null;
+    imdb_id: string;
     title: string;
     release_year: string;
     clean_title: string;
-    director: string;
+    director: string; // Single string after joining array elements
+    rating: string;
 }
