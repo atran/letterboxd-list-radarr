@@ -1,5 +1,5 @@
 import pLimit from "p-limit";
-import { getKanpai, getFirstMatch, LETTERBOXD_ORIGIN } from "./util";
+import { getKanpai, getFirstMatch, splitMatches, extractWatchers, LETTERBOXD_ORIGIN } from "./util";
 import * as cache from "../cache/index";
 import { logger } from "../logger";
 
@@ -55,8 +55,15 @@ export const getMovieDetail = async (slug: string) => {
         {
             name: ".headline-1",
             published: "#featured-film-header .number",
-            director: "#featured-film-header p a .prettify",
+            director: [
+                "#featured-film-header p a .prettify",
+                splitMatches(),
+            ],
             rating: '.display-rating',
+            watches: [
+                '.icon-watched',
+                extractWatchers(),
+            ],
             imdb: [
                 '[data-track-action="imdb" i]',
                 "[href]",
