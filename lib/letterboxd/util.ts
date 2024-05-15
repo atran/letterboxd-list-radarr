@@ -4,41 +4,13 @@ import get from '../axios';
 export const LETTERBOXD_ORIGIN = 'https://letterboxd.com';
 export const LETTERBOXD_NEXT_PAGE_REGEX = /\/page\/(\d+)/;
 
-// Function to extract and convert the number of watchers
-export const extractWatchers = () => (val?: string): number => {
-    if (!val) {
-        return 0;
-    }
-    const match = val.match(/Watched by ([\d,]+)&nbsp;members/);
-    if (match && match[1]) {
-        // Remove commas and convert to integer
-        return parseInt(match[1].replace(/,/g, ''), 10);
-    }
-    return 0;
-};
-
-export const splitMatches = (delimiter: string = ',') => (val?: string | string[]): string[] => {
-    if (!val) {
-        return [];
-    }
-    
-    if (Array.isArray(val)) {
-        console.log("Director type: Array", val);
-        // If it's already an array, return it as-is (or optionally process each element)
-        return val.map(item => item.trim());
-    } else {
-        console.log("Director type: String", val);
-        // If it's a string, split by the delimiter and trim each element
-        return val.split(delimiter).map(item => item.trim());
-    }
-};
-
+// Function to get the first match using regex
 export const getFirstMatch = (regex: RegExp) => (val?: string): string => {
-    if(!val){
+    if (!val) {
         return '';
     }
     const match = val.match(regex);
-    if(!match || match.length < 2){
+    if (!match || match.length < 2) {
         return '';
     }
     return match[1];
